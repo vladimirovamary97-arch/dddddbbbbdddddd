@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBD Twitch Chat Overlay</title>
+<link rel="stylesheet" href="style.css">
+<script src="https://cdn.jsdelivr.net/npm/comfy.js@latest/dist/comfy.min.js"></script>
+</head>
+<body>
+<div id="fog"></div>
+<div id="chat"></div>
+
+<script>
+const channel = "washamasha15";
+
+const chat=document.getElementById("chat");
+
+ComfyJS.onChat=(user,message,flags,self,extra)=>{
+ const msg=document.createElement("div");
+ msg.className="msg";
+ msg.innerHTML=`<span class="hook">🪝</span><span class="name">${user}</span><span class="text">${message}</span>`;
+ chat.appendChild(msg);
+ while(chat.children.length>15) chat.removeChild(chat.firstChild);
+ chat.scrollTop=chat.scrollHeight;
+};
+
+ComfyJS.Init(channel);
+</script>
+</body>
+</html>

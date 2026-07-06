@@ -19,14 +19,10 @@ const chat=document.getElementById("chat");
 ComfyJS.onChat=(user,message,flags,self,extra)=>{
  const msg=document.createElement("div");
  msg.className="msg";
- msg.innerHTML=`<span class="hook">⛓</span><span class="name">${user}</span><span class="text">${message}</span>`;
+ msg.innerHTML=`<span class="hook">🪝</span><span class="name">${user}</span><span class="text">${message}</span>`;
  chat.appendChild(msg);
-
- setTimeout(()=>{
-  msg.remove();
- },15000);
-
-};
+ while(chat.children.length>15) chat.removeChild(chat.firstChild);
+ chat.scrollTop=chat.scrollHeight;
 };
 
 ComfyJS.Init(channel);
